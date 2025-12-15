@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuva de Meteoros Numéricos</title>
+    <link rel="stylesheet" href="css/mat.css">
+</head>
+
+<body>
+
+    <div id="background-grid"></div>
+
+    <div id="game-container">
+
+        <div id="collision-line"></div>
+
+        <div id="ui-layer">
+            <div>Pontos: <span id="score">0</span></div>
+            <div>Vidas: <span id="lives">3</span></div>
+        </div>
+
+        <div id="game-area"></div>
+
+        <div id="player-base">
+            <input type="number" id="answer-input" placeholder="?" autocomplete="off">
+        </div>
+
+        <div id="overlay">
+            <h1 id="title-text">Defensor Matemático</h1>
+            <p id="info-text">Digite a resposta e aperte ENTER para atirar.</p>
+            <button onclick="startGame()">Começar Jogo</button>
+            <button onclick="goToDashboard()" class="btn-back">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <script src="script/mat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Cirurgião Júnior</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="background-grid"></div>
+
+    <header>
+        <h1>O Cirurgião Júnior 😷</h1>
+        <p>Arraste os órgãos da bandeja superior para o local correto.</p>
+    </header>
+
+    <div id="game-container">
+        <div id="organ-tray">
+            <div class="organ" draggable="true" id="drag-brain" data-organ="brain">
+                <span>🧠</span>
+                <div class="organ-label">Cérebro</div>
+            </div>
+            <div class="organ" draggable="true" id="drag-lungs" data-organ="lungs">
+                <span>🫁</span>
+                <div class="organ-label">Pulmões</div>
+            </div>
+            <div class="organ" draggable="true" id="drag-heart" data-organ="heart">
+                <span>❤️</span>
+                <div class="organ-label">Coração</div>
+            </div>
+            <div class="organ" draggable="true" id="drag-stomach" data-organ="stomach">
+                <span>🥟</span>
+                <div class="organ-label">Estômago</div>
+            </div>
+            <div class="organ" draggable="true" id="drag-liver" data-organ="liver">
+                <span>🌰</span>
+                <div class="organ-label">Fígado</div>
+            </div>
+            <div class="organ" draggable="true" id="drag-intestines" data-organ="intestines">
+                <span>➰</span>
+                <div class="organ-label">Intestinos</div>
+            </div>
+        </div>
+
+        <div id="operating-table">
+            <div id="body-silhouette">
+                <svg class="body-svg" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M100,20 C130,20 140,50 140,60 C140,70 135,80 150,90 C170,100 170,150 165,190 C160,230 155,250 155,300 C155,350 140,400 140,400 L60,400 C60,400 45,350 45,300 C45,250 40,230 35,190 C30,150 30,100 50,90 C65,80 60,70 60,60 C60,50 70,20 100,20 Z"
+                        fill="#34495e" stroke="#ecf0f1" stroke-width="2" />
+                </svg>
+
+                <div class="drop-zone" id="zone-brain" data-target="brain"></div>
+                <div class="drop-zone" id="zone-lungs" data-target="lungs"></div>
+                <div class="drop-zone" id="zone-heart" data-target="heart"></div>
+                <div class="drop-zone" id="zone-liver" data-target="liver"></div>
+                <div class="drop-zone" id="zone-stomach" data-target="stomach"></div>
+                <div class="drop-zone" id="zone-intestines" data-target="intestines"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-panel">
+        <h3 id="info-title">Título</h3>
+        <p id="info-text">Texto da curiosidade aqui.</p>
+    </div>
+
+    <div id="victory-screen" class="overlay">
+        <h1>CIRURGIA COMPLETA!</h1>
+        <p>O paciente está salvo graças a você.</p>
+        <button class="btn-reset" onclick="location.reload()">Nova Cirurgia</button>
+    </div>
+
+    <script src="script/cie.js"></script>
+</body>
+</html>

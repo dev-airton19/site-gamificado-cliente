@@ -1,0 +1,239 @@
+:root {
+    --bg-color: #0f172a; 
+    --tray-color: rgba(52, 73, 94, 0.95);
+    --accent: #27ae60;
+    --text: #ecf0f1;
+    --highlight: #f1c40f;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Começa do topo */
+    height: 100vh;
+    overflow: hidden; /* Evita scroll na página inteira */
+}
+
+/* --- GRID DE FUNDO --- */
+#background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 0;
+    pointer-events: none;
+}
+.grid-tile {
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* --- CABEÇALHO --- */
+header {
+    z-index: 10;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--highlight);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+p {
+    margin: 5px 0 0 0;
+    font-size: 1rem;
+    color: #bdc3c7;
+}
+
+/* --- CONTAINER DO JOGO --- */
+#game-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column; /* MUDANÇA: Coluna em vez de linha */
+    width: 95%;
+    max-width: 500px; /* Limita a largura para manter a silhueta proporcional */
+    height: 85vh;     /* Usa a altura disponível */
+    gap: 15px;
+}
+
+/* --- BANDEJA HORIZONTAL (NO TOPO) --- */
+#organ-tray {
+    flex: 0 0 auto; /* Não estica, usa apenas o espaço necessário */
+    background-color: var(--tray-color);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: row; /* MUDANÇA: Itens lado a lado */
+    justify-content: space-around; /* Espalha os órgãos igualmente */
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow-x: auto; /* Permite scroll lateral em telas muito pequenas */
+}
+
+/* --- MESA DE OPERAÇÃO (EMBAIXO) --- */
+#operating-table {
+    flex: 1; /* Ocupa o restante da altura disponível */
+    background-color: #7f8c8d;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-image: radial-gradient(#95a5a6 15%, transparent 16%);
+    background-size: 20px 20px;
+    border: 4px solid #576574;
+    overflow: hidden; 
+}
+
+/* --- SILHUETA --- */
+#body-silhouette {
+    height: 95%; /* Altura quase total da mesa */
+    width: auto;
+    aspect-ratio: 200 / 400; /* Mantém a proporção do corpo */
+    position: relative;
+}
+
+svg.body-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.6));
+}
+
+/* --- PEÇAS (ÓRGÃOS) --- */
+.organ {
+    width: 60px; /* Um pouco menor para caber na horizontal */
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+    border: 3px solid transparent;
+    position: relative; /* Para posicionar o label */
+    margin: 0 5px;
+}
+
+.organ:hover {
+    transform: scale(1.1);
+    border-color: var(--highlight);
+}
+
+.organ:active {
+    cursor: grabbing;
+}
+
+.organ-label {
+    position: absolute;
+    bottom: -22px; /* Ajustado para não sobrepor demais */
+    font-size: 0.7rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Organ colocado (dentro do corpo) remove o label para ficar limpo */
+.drop-zone .organ-label, .placed .organ-label {
+    display: none;
+}
+
+/* --- ZONAS DE DROP (Ajuste Fino) --- */
+.drop-zone {
+    position: absolute;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.drop-zone.drag-hover {
+    background-color: rgba(39, 174, 96, 0.4);
+    border-color: var(--accent);
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Posições baseadas na porcentagem do container #body-silhouette */
+#zone-brain { top: 5%; left: 50%; width: 30%; height: 12%; }
+#zone-lungs { top: 22%; left: 50%; width: 55%; height: 20%; border-radius: 30px; }
+#zone-heart { top: 27%; left: 56%; width: 22%; height: 11%; }
+#zone-liver { top: 38%; left: 40%; width: 27%; height: 11%; border-radius: 15px; }
+#zone-stomach { top: 40%; left: 60%; width: 25%; height: 12%; }
+#zone-intestines { top: 50%; left: 50%; width: 40%; height: 17%; border-radius: 20px; }
+
+/* --- PAINEL DE INFO (Canto inferior direito da tela) --- */
+#info-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 250px;
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 5px solid var(--highlight);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: none;
+    z-index: 100;
+}
+#info-title {
+    margin-top: 0;
+    color: var(--highlight);
+    font-size: 1.1rem;
+}
+#info-text {
+    font-size: 0.9rem;
+    color: #ecf0f1;
+}
+
+/* --- TELA DE VITÓRIA --- */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 999;
+    text-align: center;
+}
+.btn-reset {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.btn-reset:hover {
+    background-color: #219150;
+}

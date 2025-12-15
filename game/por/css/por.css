@@ -1,0 +1,317 @@
+:root {
+    --primary: #f39c12;
+    /* Laranja Fabrica */
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --danger: #e74c3c;
+    --success: #27ae60;
+    --bg-color: #000000; /* Fundo preto igual matemática */
+}
+
+/* --- NOVO: Estilos do Grid (Copiado da Matemática) --- */
+#background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.grid-tile {
+    position: relative;
+    border: 1px solid #1a1a1a;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+/* --- Estilos Gerais --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color); /* Alterado para preto */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+/* Estilo da área do jogo (O Tablet Industrial) */
+#game-container {
+    background-color: var(--light);
+    
+    /* ALTERADO: Dimensões fixas iguais ao de Matemática */
+    width: 600px;
+    height: 80vh;
+    
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra ajustada */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 5px solid var(--dark);
+    z-index: 10; /* Garante que fique acima do grid */
+}
+
+/* Cabeçalho com Placar */
+header {
+    background: repeating-linear-gradient(45deg,
+            var(--primary),
+            var(--primary) 10px,
+            #d35400 10px,
+            #d35400 20px);
+    padding: 15px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Área da Esteira (Onde a palavra aparece) */
+#conveyor-belt {
+    flex: 1;
+    background-color: #bdc3c7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 5px solid var(--dark);
+    background-image: radial-gradient(#95a5a6 15%, transparent 16%), radial-gradient(#95a5a6 15%, transparent 16%);
+    background-size: 20px 20px;
+}
+
+/* A Palavra (Caixote) */
+#word-box {
+    background-color: white;
+    border: 3px solid var(--dark);
+    padding: 20px 40px;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 5px 0 var(--dark);
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--dark);
+    z-index: 2;
+}
+
+#word-box.active {
+    transform: scale(1);
+}
+
+/* Barra de Tempo */
+#timer-bar-container {
+    width: 80%;
+    height: 10px;
+    background: #7f8c8d;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#timer-bar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--success);
+    transition: width linear;
+}
+
+/* Botões de Decisão (Os Tubos) */
+#controls {
+    padding: 20px;
+    background-color: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-class {
+    padding: 15px 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.1s, opacity 0.2s;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-class:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.btn-sub {
+    background-color: #3498db;
+}
+
+.btn-verb {
+    background-color: #e67e22;
+}
+
+.btn-adj {
+    background-color: #9b59b6;
+}
+
+/* Telas de Overlay (Start/Game Over) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-start {
+    background-color: var(--success);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #1e8449;
+    font-weight: bold;
+}
+
+.btn-start:hover {
+    background-color: #2ecc71;
+}
+
+/* Feedback Visual */
+.correct-flash {
+    background-color: var(--success) !important;
+}
+
+.wrong-flash {
+    background-color: var(--danger) !important;
+}
+
+/* ... O restante do por.css ... */
+
+/* Se o seu arquivo original não tinha esta seção, inclua-a (a partir da linha 173 do seu por.css) */
+/* Botões de Overlay (Start/Game Over) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-start {
+    background-color: var(--success);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #1e8449;
+    font-weight: bold;
+    width: 280px; /* Adicionado para alinhar os botões */
+}
+
+.btn-start:hover {
+    background-color: #2ecc71;
+}
+
+/* Feedback Visual */
+.correct-flash {
+    background-color: var(--success) !important;
+}
+
+.wrong-flash {
+    background-color: var(--danger) !important;
+}
+
+/* --- Botão Voltar ao Menu (Estilo Industrial) --- */
+.btn-voltar {
+    background-color: transparent; /* Fundo transparente */
+    border: 2px solid #bdc3c7;     /* Borda cinza metálico */
+    color: #bdc3c7;                /* Texto cinza metálico */
+    
+    /* Mesmas dimensões do botão Start para alinhar perfeito */
+    width: 280px; 
+    padding: 12px 0;
+    margin-top: 15px;
+    
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;           /* Arredondado igual ao Start */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;     /* Letras maiúsculas */
+    box-sizing: border-box;
+}
+
+.btn-voltar:hover {
+    background-color: #bdc3c7;     /* Preenche de cinza ao passar o mouse */
+    color: #2c3e50;                /* Texto fica escuro para contraste */
+    border-color: #bdc3c7;
+    transform: translateY(-2px);   /* Leve subida para efeito tátil */
+}

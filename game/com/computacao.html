@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Robô - Lógica de Programação</title>
+    <link rel="stylesheet" href="css/com.css">
+</head>
+
+<body>
+
+    <div id="background-grid"></div>
+
+    <header>
+        <h1>🤖 Jogo do Robô</h1>
+        <div class="stats">
+            Pontos: <span id="score">0</span> | Vidas: <span id="lives">3</span>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div id="grid"></div>
+
+        <div class="controls">
+            <h3>Painel de Controle</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">Leve o robô até a estrela ⭐.</p>
+
+            <div class="btn-group">
+                <input type="number" id="stepInput" value="1" min="1" max="10">
+                <button onclick="addCommand('move')">Andar X Casas</button>
+            </div>
+            <div class="btn-group">
+                <button onclick="addCommand('left')">Virar Esquerda ↺</button>
+                <button onclick="addCommand('right')">Virar Direita ↻</button>
+            </div>
+
+            <hr>
+            <h4>Algoritmo Atual:</h4>
+            <ul id="commandList"></ul>
+
+            <button class="execute" onclick="executeCommands()" id="btnRun">EXECUTAR ▶</button>
+            <button class="reset" onclick="resetGame()" style="margin-top: 5px; width: 100%;">Limpar Tudo</button>
+        </div>
+    </div>
+
+    <div id="start-screen" class="overlay">
+        <h1>Programador Robótico</h1>
+        <p>Use a lógica para guiar o robô.<br>Resolva equações para desbloquear comandos.</p>
+        <button class="action-btn" onclick="startGame()">Iniciar Sistema</button>
+        <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
+
+    <div id="game-over-screen" class="overlay hidden">
+        <h1 style="color: #e74c3c;">SISTEMA FALHOU!</h1>
+        <p>O robô sofreu muitos danos.</p>
+        <p id="game-over-info" style="font-size: 1.2rem; line-height: 1.5;"></p>
+        <button class="action-btn" onclick="startGame()">Reiniciar Sistema</button>
+        <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
+    
+    <script src="script/com.js"></script>
+</body>
+
+</html>

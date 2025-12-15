@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Reparador do Tempo</title>
+    <link rel="stylesheet" href="css/his.css">
+</head>
+<body>
+
+    <div id="background-grid"></div>
+
+    <header>
+        <h1>Reparador do Tempo</h1>
+        <div class="stats">
+            Score: <span id="score">0</span> | Vidas: <span id="lives">3</span>
+        </div>
+    </header>
+
+    <div id="current-event-container">
+        <p style="margin-bottom:5px; font-size:0.8rem; opacity:0.7;">ONDE ISSO SE ENCAIXA?</p>
+        <div id="current-card" class="card">
+            <span id="card-text">Carregando...</span>
+        </div>
+    </div>
+
+    <div id="timeline">
+    </div>
+
+    <div id="start-screen" class="overlay">
+        <h1>A Linha Temporal quebrou!</h1>
+        <p style="max-width: 300px; line-height: 1.5;">Eventos da história se perderam.<br><br>Sua missão é colocar os eventos que aparecem no topo dentro da linha do tempo na ordem correta.</p>
+        <button class="action-btn" onclick="startGame()">Iniciar Reparo</button>
+        <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
+
+    <div id="game-over-screen" class="overlay hidden">
+        <h1 style="color: #e74c3c;">PARADOXO TEMPORAL!</h1>
+        <p>Você errou muitas datas.</p>
+        <p id="game-over-info" style="font-size: 1.2rem; line-height: 1.5;"></p> 
+        <button class="action-btn" onclick="startGame()">Tentar Novamente</button>
+        <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
+
+    <div id="victory-screen" class="overlay hidden">
+        <h1 style="color: #f1c40f;">LINHA RESTAURADA!</h1>
+        <p>Parabéns, você é um mestre da história.</p>
+        <p id="victory-info" style="font-size: 1.2rem; line-height: 1.5;"></p>
+        <button class="action-btn" onclick="startGame()">Jogar de Novo</button>
+        <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
+
+    <script src="script/his.js"></script>
+</body>
+</html>

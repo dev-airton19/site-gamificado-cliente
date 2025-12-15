@@ -1,0 +1,241 @@
+:root {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --accent: #0f3460;
+    --highlight: #e94560;
+    --text: #ecf0f1;
+    --success: #27ae60;
+}
+
+/* --- ESTILOS DO GRID (Copiados da Matemática) --- */
+#background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 0; /* Fica atrás de tudo */
+    pointer-events: none;
+}
+
+.grid-tile {
+    position: relative;
+    border: 1px solid #2a2a40; /* Cor ajustada levemente para combinar com o tema escuro de história */
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-color);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+header {
+    background-color: var(--accent);
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.stats {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: #bdc3c7;
+}
+
+/* Área do Evento Atual (A carta que temos que colocar) */
+#current-event-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+    z-index: 10; /* Acima do grid */
+    position: relative;
+}
+
+.card {
+    background-color: var(--highlight);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    width: 280px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 0 15px var(--highlight);
+    position: relative;
+    border: 2px solid white;
+}
+
+.card-year {
+    display: none;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+/* A Linha do Tempo */
+#timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 10; /* Acima do grid */
+}
+
+/* Linha vertical desenhada com CSS */
+#timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--text);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Cartas JÁ colocadas na linha */
+.placed-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 250px;
+    text-align: center;
+    margin: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+
+.placed-card .card-year {
+    display: inline-block;
+    color: #f1c40f;
+}
+
+/* Botões de Inserção (Drop Zones) */
+.insert-btn {
+    background-color: transparent;
+    border: 2px dashed #555;
+    color: #777;
+    padding: 8px 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+    background-color: rgba(26, 26, 46, 0.8); /* Fundo semi-transparente para ler sobre o grid */
+}
+
+.insert-btn:hover {
+    border-color: var(--success);
+    color: var(--success);
+    transform: scale(1.1);
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+/* Overlays */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    text-align: center;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+button.action-btn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: var(--highlight);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Animações */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.correct-anim {
+    animation: pop 0.3s ease;
+    border-color: var(--success);
+}
+
+.wrong-anim {
+    animation: shake 0.4s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Botão Voltar ao Menu */
+button.btn-voltar {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 2px solid #bdc3c7; /* Cor cinza claro */
+    color: #bdc3c7;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-family: inherit; /* Mantém a fonte do jogo */
+}
+
+button.btn-voltar:hover {
+    background-color: #bdc3c7;
+    color: var(--bg-color); /* Fica escuro com fundo claro */
+    border-color: #bdc3c7;
+}

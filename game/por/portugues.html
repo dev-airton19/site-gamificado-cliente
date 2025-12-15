@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Fábrica de Palavras</title>
+    <link rel="stylesheet" href="css/por.css">
+</head>
+
+<body>
+
+    <div id="background-grid"></div>
+
+    <div id="game-container">
+        <header>
+            <div>FÁBRICA DE PALAVRAS</div>
+            <div class="stats">Pontos: <span id="score">0</span> | Vidas: <span id="lives">3</span></div>
+        </header>
+
+        <div id="conveyor-belt">
+            <div id="word-box">?</div>
+            <div id="timer-bar-container">
+                <div id="timer-bar"></div>
+            </div>
+        </div>
+
+        <div id="controls">
+            <button class="btn-class btn-sub" onclick="checkAnswer('substantivo')">SUBSTANTIVO</button>
+            <button class="btn-class btn-verb" onclick="checkAnswer('verbo')">VERBO</button>
+            <button class="btn-class btn-adj" onclick="checkAnswer('adjetivo')">ADJETIVO</button>
+        </div>
+
+        <div id="start-screen" class="overlay">
+            <h1>Bem-vindo Operário!</h1>
+            <p>Sua missão é organizar as palavras que chegam na esteira.<br>Clique na classe gramatical correta antes
+                que o tempo acabe!</p>
+            <button class="btn-start" onclick="startGame()">INICIAR TURNO</button>
+            <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h1>FIM DE TURNO</h1>
+            <p>A máquina travou!</p>
+            <p style="font-size: 1.5rem;" id="final-info">Pontuação Final: <span id="final-score">0</span></p>
+            <button class="btn-start" onclick="startGame()">TENTAR NOVAMENTE</button>
+            <button class="action-btn btn-voltar" onclick="voltarMenu()">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <script src="script/por.js"></script>
+</body>
+
+</html>

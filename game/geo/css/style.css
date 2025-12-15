@@ -1,0 +1,169 @@
+:root {
+    --bg-color: #e0f7fa;
+    --accent: #009688;
+    --text: #2c3e50;
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text);
+}
+
+header {
+    width: 100%;
+    background-color: #004d40;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+h1 { margin: 0; font-size: 1.5rem; }
+.subtitle { font-size: 0.9rem; opacity: 0.8; }
+
+/* Área Principal do Jogo */
+#game-area {
+    display: flex;
+    width: 95%;
+    max-width: 1200px;
+    height: 85vh;
+    margin-top: 10px;
+    gap: 15px;
+}
+
+/* Caixa de Peças (Sidebar) */
+#piece-box {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    gap: 10px;
+    overflow-y: auto;
+    border: 3px solid #004d40;
+}
+
+/* Estilo das Peças (Imagens) */
+.piece {
+    width: 60px; /* Ajuste conforme o tamanho das suas imagens */
+    height: auto;
+    cursor: grab;
+    transition: transform 0.2s;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+}
+
+.piece:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+/* Quando a peça é encaixada no mapa */
+.piece.placed {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1); /* Centraliza no ponto */
+    cursor: default;
+    filter: none;
+    pointer-events: none; /* Impede arrastar depois de colocar */
+    width: 50px; /* Pode ajustar o tamanho final no mapa aqui */
+}
+
+/* Área do Mapa */
+#map-container {
+    flex: 3;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #81d4fa; /* Cor do oceano */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* A Moldura do Brasil (Imagem de Fundo) */
+#brazil-bg {
+    width: auto;
+    height: 90%; /* Ajuste para caber na tela */
+    opacity: 0.6; /* Leve transparência para destacar as peças quando colocadas */
+    pointer-events: none;
+}
+
+/* Zonas de Drop (Invisíveis) */
+.drop-zone {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    /* border: 1px dashed red;  <-- Descomente para ver onde estão os alvos */
+}
+
+/* Caixa de Info atualizada */
+#info-box {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    width: 280px;
+    display: none;
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 50;
+}
+
+#info-box h2 {
+    margin-top: 0;
+    color: var(--accent);
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.info-item {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.info-item strong {
+    color: #004d40;
+}
+
+/* Tela de Vitória */
+#victory-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    display: none;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+}

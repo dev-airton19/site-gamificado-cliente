@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quebra-Cabeça do Brasil 🇧🇷</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Quebra-Cabeça: Estados do Brasil</h1>
+        <span class="subtitle">Encaixe a imagem do estado na moldura correta!</span>
+    </header>
+
+    <div id="game-area">
+        <div id="piece-box">
+            <h3 style="width: 100%; margin-top: 0; text-align: center;">Peças:</h3>
+            </div>
+
+        <div id="map-container">
+            <img id="brazil-bg" src="img/brasil.png" alt="Moldura do Mapa do Brasil">
+            
+            </div>
+    </div>
+
+    <div id="info-box">
+        <h2 id="state-name">Nome do Estado</h2>
+        
+        <div class="info-item">
+            <strong>Capital:</strong> <span id="state-capital">-</span>
+        </div>
+        <div class="info-item">
+            <strong>População:</strong> <span id="state-pop">-</span>
+        </div>
+        <div class="info-item">
+            <strong>Clima:</strong> <span id="state-climate">-</span>
+        </div>
+        <div class="info-item">
+            <strong>Curiosidade:</strong> <span id="state-fact">-</span>
+        </div>
+    </div>
+
+    <div id="victory-overlay">
+        <h1>MAPA COMPLETO!</h1>
+        <p>Você completou o mapa do Brasil.</p>
+        <button onclick="location.reload()">Jogar Novamente</button>
+    </div>
+
+    <script src="script/geo.js"></script>
+</body>
+
+</html>
