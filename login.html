@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login 3D Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="background-grid"></div>
+
+    <button id="audio-toggle" class="audio-btn" title="Ligar/Desligar Som" style="color: #555;">
+        <i class="fas fa-volume-xmark"></i>
+    </button>
+
+    <div class="main-container">
+        
+        <div class="toggle-container">
+            <span id="login-label" class="active">CONECTE-SE</span>
+            <span id="signup-label">INSCREVER-SE</span>
+        </div>
+        
+        <div class="checkbox-wrapper">
+            <input class="checkbox" type="checkbox" id="reg-log">
+            <label for="reg-log"></label> 
+        </div>
+
+        <div class="card-3d-wrap">
+            <div class="card-3d-wrapper" id="card-wrapper">
+                
+                <div class="card-front">
+                    <div class="content-area">
+                        <div id="login-section">
+                            <h2>CONECTE-SE</h2>
+                            <form id="form-login">
+                                <div class="input-group">
+                                    <i class="fas fa-at"></i>
+                                    <input type="text" id="login-email" placeholder="Seu e-mail" required>
+                                </div>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="login-pass" placeholder="Sua senha" required>
+                                </div>
+                                <button type="button" id="btn-login" class="btn">ENVIAR</button>
+                                <a href="#" id="link-forgot" class="forgot">Esqueceu sua senha?</a>
+                            </form>
+                        </div>
+
+                        <div id="recover-section" class="hidden">
+                            <h2 id="recover-title">RECUPERAR</h2>
+                            
+                            <div id="recover-step-1">
+                                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px; text-align: center;">
+                                    Digite seu e-mail para receber o código.
+                                </p>
+                                <form id="form-recover">
+                                    <div class="input-group">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="recover-email" placeholder="E-mail cadastrado" required>
+                                    </div>
+                                    <button type="button" id="btn-recover" class="btn">ENVIAR</button>
+                                </form>
+                            </div>
+
+                            <div id="recover-step-2" class="hidden">
+                                <p style="font-size: 0.75rem; color: #aaa; margin-bottom: 10px; text-align: center;">
+                                    Verifique seu e-mail e digite o código abaixo.
+                                </p>
+                                <form id="form-reset">
+                                    <div class="input-group">
+                                        <i class="fas fa-key"></i>
+                                        <input type="text" id="reset-token" placeholder="Código recebido" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="reset-new-pass" placeholder="Nova Senha" required>
+                                    </div>
+                                    <button type="button" id="btn-reset-confirm" class="btn" style="font-size: 0.8rem;">ALTERAR SENHA</button>
+                                </form>
+                            </div>
+
+                            <a href="#" id="link-back-login" class="forgot">Voltar para Login</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-back">
+                    <div class="content-area">
+                        <h2>INSCREVER-SE</h2>
+                        <form id="form-register">
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="reg-name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-at"></i>
+                                <input type="email" id="reg-email" placeholder="Seu e-mail" required>
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="reg-pass" placeholder="Sua senha" required>
+                            </div>
+                            <button type="button" id="btn-register" class="btn">ENVIAR</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
