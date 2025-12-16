@@ -5,8 +5,8 @@ flipSound.preload = 'auto';
 flipSound.volume = 1.0;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const API_BASE = "http://localhost:4000/auth";
-    const API_STATS = "http://localhost:4000/stats";
+    const API_BASE = "https://site-gamificadoback-cliente.onrender.com/auth";
+    const API_STATS = "https://site-gamificadoback-cliente.onrender.com/stats";
 
     // --- AUDIO & UI SETUP (MANTIDO IGUAL) ---
     const audioBtn = document.getElementById('audio-toggle');

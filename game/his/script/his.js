@@ -220,7 +220,7 @@ async function saveGameDataToDB(gameType, score, durationHours) {
     if (!token) return; // Se não estiver logado, não salva no banco
 
     try {
-        await fetch("http://localhost:4000/stats/update", {
+        await fetch("https://site-gamificadoback-cliente.onrender.com/stats/update", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

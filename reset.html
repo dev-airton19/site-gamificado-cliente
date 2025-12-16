@@ -20,7 +20,7 @@
       if (!newPassword || newPassword.length < 6) return alert("Senha com mínimo 6 caracteres");
       if (newPassword !== confirm) return alert("As senhas não conferem");
       try {
-        const res = await fetch("http://localhost:4000/auth/reset-password", {
+        const res = await fetch("https://site-gamificadoback-cliente.onrender.com/auth/reset-password", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token, email, newPassword })
