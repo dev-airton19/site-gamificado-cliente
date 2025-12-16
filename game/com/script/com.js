@@ -345,7 +345,7 @@ function sleep(ms) {
 }
 
 function voltarMenu() {
-    window.location.href = "../../dashboard.html"
+    window.location.href = "../../index.html"
 }
 
 // --- FUNÇÃO PARA SALVAR NO BANCO DE DADOS ---

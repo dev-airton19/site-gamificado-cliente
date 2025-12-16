@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("currentUser", JSON.stringify(data.user));
 
                 alert(`Bem-vindo, ${data.user.name}!`);
-                window.location.href = "dashboard.html";
+                window.location.href = "index.html";
             } catch (err) {
                 alert(err.message);
             }
